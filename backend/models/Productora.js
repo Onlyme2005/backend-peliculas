@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 
 const ProductoraSchema = new Schema({ 
-    nombreProductora: {
+    nombre: {
         type: String,
         required: [true, 'El nombre de la productora es obligatorio'],
         unique: true,

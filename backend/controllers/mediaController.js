@@ -50,10 +50,7 @@ const createMedia = async (req = request, res = response) => {
         if (!productoraDB || productoraDB.estado !== 'Activo') {
             return res.status(400).json({ msg: 'La productora no existe o está Inactiva' });
         }
-        const tipoDB = await Tipo.findById(tipo);
-        if (!tipoDB) {
-            return res.status(400).json({ msg: 'El tipo especificado no existe en la base de datos' });
-        }
+        
 
         // 4. Crear y guardar
         const data = { serial, url, generoPrincipal, directorPrincipal, productora, tipo, ...resto };

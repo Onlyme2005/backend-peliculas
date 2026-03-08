@@ -1,5 +1,5 @@
 const Productora = require('../models/Productora');
-// 1. Agregamos "request" a la importación
+
 const { request, response } = require('express');
 
 const getProductoras = async (req = request, res = response) => {
@@ -15,16 +15,16 @@ const getProductoras = async (req = request, res = response) => {
 const createProductora = async (req = request, res = response) => {
     try {
         // 2. Extraemos TODOS los campos que pertenecen a Productora
-        const { nombreProductora, estado, slogan, descripcion } = req.body;
+        const { nombre, estado, slogan, descripcion } = req.body;
 
-        const productoraDB = await Productora.findOne({ nombreProductora });
+        const productoraDB = await Productora.findOne({ nombre});
 
         if (productoraDB) {
-            return res.status(400).json({ msg: 'La productora ' + nombreProductora + ' ya existe'});
+            return res.status(400).json({ msg: 'La productora ' + nombre + ' ya existe'});
         }
 
         // 3. Le pasamos todos los campos al crear el nuevo objeto
-        const productora = new Productora({ nombreProductora, estado, slogan, descripcion });
+        const productora = new Productora({ nombre, estado, slogan, descripcion });
         
         await productora.save();
         res.status(201).json(productora);

@@ -4,7 +4,7 @@ Este es un proyecto de backend desarrollado con Node.js y Express para la gesti�
 ### Instalación y Configuración:
 1.  **Clonar este repositorio:**
    
-    git clone https://github.com/usuario/NombreProyecto.git
+    git clone https://github.com/Onlyme2005/backend-peliculas.git
    
 2.  **Instalar dependencias:**
     Accede a la carpeta `backend` y ejecuta:

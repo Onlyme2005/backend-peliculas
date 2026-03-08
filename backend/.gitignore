@@ -2,4 +2,6 @@
 node_modules/
 # Ingnorar variables de entorno
 .env
-#Ingnorar archivos de log
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db

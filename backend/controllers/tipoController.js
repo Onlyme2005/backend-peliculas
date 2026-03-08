@@ -1,4 +1,4 @@
-const Tipo= require('../models/Genero');
+const Tipo= require('../models/Tipo');
 
 const { response} = require('express');
 

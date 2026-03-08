@@ -1,4 +1,4 @@
-const Productora= require('../models/Genero');
+const Productora= require('../models/Productora');
 
 const { response} = require('express');
 

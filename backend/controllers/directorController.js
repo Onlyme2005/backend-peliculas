@@ -1,10 +1,10 @@
-const GDirector = require('../models/Director');
+const Director = require('../models/Director');
 
 const { response} = require('express');
 
 const getDirectores = async (req = request, res = response) => {
     try {
-        const directores = await GDirector.find();
+        const directores = await Director.find();
         res.status(200).json(directores);
     } catch (error) {
         console.error('Error al obtener los directores:', error);
@@ -15,13 +15,13 @@ const createDirector = async (req = request, res = response) => {
     try {
         const {nombres, descripcion} = req.body;
 
-        const directorDB = await GDirector.findOne({nombres});
+        const directorDB = await Director.findOne({nombres});
 
         if (directorDB) {
             return res.status(400).json({ msg: 'El director ' + nombres + ' ya existe'});
         }
 
-        const director = new GDirector({nombres, descripcion});
+        const director = new Director({nombres, descripcion});
         await director.save();
         res.status(201).json(director);
 

@@ -13,7 +13,7 @@ const getTipos = async (req = request, res = response) => {
 
 const createTipo = async (req = request, res = response) => {
     try {
-        // Extraemos SIN el campo estado
+        
         const { nombre, descripcion } = req.body;
 
         const tipoDB = await Tipo.findOne({ nombre });

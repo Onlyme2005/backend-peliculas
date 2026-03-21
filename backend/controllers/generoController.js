@@ -29,9 +29,45 @@ const createGenero = async (req = request, res = response) => {
         console.error('Error al crear el género:', error);
         res.status(500).json({msg: 'Ocurrió un error al crear el género'});
     }
-}
+};
+// Función para Actualizar (PUT)
+const updateGenero = async (req, res) => {
+    try {
+        const { id } = req.params;
+        // findByIdAndUpdate busca por ID y actualiza con lo que venga en req.body
+        // el { new: true } es para que nos devuelva el objeto ya actualizado
+        const generoActualizado = await Genero.findByIdAndUpdate(id, req.body, { new: true });
+        
+        if (!generoActualizado) {
+            return res.status(404).json({ msg: 'Género no encontrado' });
+        }
+        res.json(generoActualizado);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Hubo un error al actualizar el género' });
+    }
+};
 
+// Función para Eliminar (DELETE)
+const deleteGenero = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const generoEliminado = await Genero.findByIdAndDelete(id);
+        
+        if (!generoEliminado) {
+            return res.status(404).json({ msg: 'Género no encontrado' });
+        }
+        res.json({ msg: 'Género eliminado con éxito' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Hubo un error al eliminar el género' });
+    }
+};
+
+// ¡Asegúrate de exportarlas al final de tu archivo!
 module.exports = {
-    getGeneros,
-    createGenero
-}
+    createGenero, // la que ya tenías
+    getGeneros,   // la que ya tenías
+    updateGenero, // NUEVA
+    deleteGenero  // NUEVA
+};

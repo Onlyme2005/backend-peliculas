@@ -31,9 +31,46 @@ const createTipo = async (req = request, res = response) => {
         console.error('Error al crear el tipo:', error);
         res.status(500).json({msg: 'Ocurrió un error al crear el tipo'});
     }
-}
+};
+// Función para Actualizar (PUT)
+const updateTipo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        // findByIdAndUpdate busca por ID y actualiza con lo que venga en req.body
+        // el { new: true } es para que nos devuelva el objeto ya actualizado
+        const tipoActualizado = await Tipo.findByIdAndUpdate(id, req.body, { new: true });
+        
+        if (!tipoActualizado) {
+            return res.status(404).json({ msg: 'Tipo no encontrado' });
+        }
+        res.json(tipoActualizado);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Hubo un error al actualizar el tipo' });
+    }
+};
 
+// Función para Eliminar (DELETE)
+const deleteTipo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const tipoEliminado = await Tipo.findByIdAndDelete(id);
+        
+        if (!tipoEliminado) {
+            return res.status(404).json({ msg: 'Tipo no encontrado' });
+        }
+        res.json({ msg: 'Tipo eliminado con éxito' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Hubo un error al eliminar el tipo' });
+    }
+};
+
+// ¡Asegúrate de exportarlas al final de tu archivo!
 module.exports = {
-    getTipos,
-    createTipo
-}
+    createTipo, // la que ya tenías
+    getTipos,   // la que ya tenías
+    updateTipo, // NUEVA
+    deleteTipo  // NUEVA
+};
+

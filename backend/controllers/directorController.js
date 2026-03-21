@@ -31,9 +31,45 @@ const createDirector = async (req = request, res = response) => {
         console.error('Error al crear el director:', error);
         res.status(500).json({msg: 'Ocurrió un error al crear el director'});
     }
-}
+};
+// Función para Actualizar (PUT)
+const updateDirector = async (req, res) => {
+    try {
+        const { id } = req.params;
+        // findByIdAndUpdate busca por ID y actualiza con lo que venga en req.body
+        // el { new: true } es para que nos devuelva el objeto ya actualizado
+        const directorActualizado = await Director.findByIdAndUpdate(id, req.body, { new: true });
+        
+        if (!directorActualizado) {
+            return res.status(404).json({ msg: 'Director no encontrado' });
+        }
+        res.json(directorActualizado);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Hubo un error al actualizar el director' });
+    }
+};
 
+// Función para Eliminar (DELETE)
+const deleteDirector = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const directorEliminado = await Director.findByIdAndDelete(id);
+        
+        if (!directorEliminado) {
+            return res.status(404).json({ msg: 'Director no encontrado' });
+        }
+        res.json({ msg: 'Director eliminado con éxito' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Hubo un error al eliminar el director' });
+    }
+};
+
+// ¡Asegúrate de exportarlas al final de tu archivo!
 module.exports = {
-    getDirectores,
-    createDirector
-}
+    createDirector, // la que ya tenías
+    getDirectores,   // la que ya tenías
+    updateDirector, // NUEVA
+    deleteDirector  // NUEVA
+};

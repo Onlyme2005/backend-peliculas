@@ -1,0 +1,24 @@
+/* Importamos la fuente 'Poppins' de Google (muy usada en paneles de admin) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f9; /* Un gris muuuy clarito para que las tarjetas blancas resalten */
+}
+
+/* Hacemos que los bordes de las tarjetas sean más suaves */
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+/* Efecto suave en los botones */
+.btn {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.btn:hover {
+  transform: translateY(-2px); /* El botón "salta" un poquito al pasar el mouse */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

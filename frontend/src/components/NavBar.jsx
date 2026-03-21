@@ -1,32 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        // Agregamos la clase 'navbar-custom' que creamos en el CSS
+        <nav className="navbar navbar-expand-lg navbar-custom py-3">
         <div className="container-fluid px-4">
-            {/* Usamos Link en lugar de <a> para evitar que la página se recargue */}
-            <Link className="navbar-brand" to="/"> Admin Películas</Link>
+            
+            {/* LOGO DE LA APP */}
+            <Link className="navbar-brand fs-3 fw-bold" to="/">
+            🎬 Admin<span style={{ color: '#f8c146' }}>Pelis</span>
+            </Link>
             
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" style={{ filter: 'invert(1)' }}></span>
             </button>
             
             <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav ms-auto gap-3">
                 <li className="nav-item">
-                <Link className="nav-link" to="/generos">Géneros</Link>
+                <NavLink className="nav-link" to="/peliculas">Películas</NavLink>
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link" to="/directores">Directores</Link>
+                <NavLink className="nav-link" to="/generos">Géneros</NavLink>
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link" to="/productoras">Productoras</Link>
+                <NavLink className="nav-link" to="/directores">Directores</NavLink>
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link" to="/tipos">Tipos</Link>
+                <NavLink className="nav-link" to="/productoras">Productoras</NavLink>
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link" to="/media">Películas y Series</Link>
+                <NavLink className="nav-link" to="/tipos">Tipos</NavLink>
                 </li>
             </ul>
             </div>

@@ -107,7 +107,7 @@ export const TipoView = () => {
 
         <h4 className="mt-5">Catálogo de Tipos</h4>
         <div className="table-responsive">
-            <table className="table table-striped table-bordered text-center align-middle shadow-sm" style={{ fontSize: '0.9rem' }}>
+            <table className="table table-striped table-hover table-bordered text-center align-middle shadow-sm" style={{ fontSize: '0.9rem' }}>
             <thead className="table-dark">
                 <tr>
                 <th style={{ width: '30%' }}>Nombre</th>

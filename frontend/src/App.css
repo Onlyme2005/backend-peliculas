@@ -1,24 +1,103 @@
-/* Importamos la fuente 'Poppins' de Google (muy usada en paneles de admin) */
+/* Importamos la fuente 'Poppins' para un toque moderno y redondeado */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f4f6f9; /* Un gris muuuy clarito para que las tarjetas blancas resalten */
+  background-color: #f0f2f5; /* Fondo gris súper claro para que resalte el contenido */
+  color: #333;
 }
 
-/* Hacemos que los bordes de las tarjetas sean más suaves */
+/* 🌟 BARRA DE NAVEGACIÓN (Estilo Premium) */
+.navbar-custom {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover, 
+.navbar-custom .nav-link.active {
+  color: #f8c146 !important; /* Amarillo cinematográfico al pasar el mouse */
+  transform: translateY(-2px);
+}
+
+/* 🃏 TARJETAS (Formularios) */
 .card {
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05); /* Sombra suave 3D */
+  transition: all 0.3s ease;
 }
 
-/* Efecto suave en los botones */
+.card-header {
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+  border-bottom: none;
+}
+
+/* 🔘 BOTONES CON EFECTO HOVER */
 .btn {
-  transition: all 0.3s ease;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px); /* El botón "salta" un poquito al pasar el mouse */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-3px); /* El botón "salta" hacia arriba */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* 📊 TABLAS MÁS LIMPIAS */
+.table-responsive {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+/* Hacemos que las filas se iluminen al pasar el mouse */
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+  cursor: default;
+}
+/* ✨ EFECTOS PARA LAS TARJETAS DE PELÍCULAS ✨ */
+.movie-card {
+    transition: all 0.3s ease;
+    overflow: hidden; /* Para que la imagen no se salga si la agrandamos */
+}
+
+.movie-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Sube un poco y se agranda */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important; /* Sombra más fuerte */
+    z-index: 10; /* Se pone al frente */
+}
+
+/* Efecto zoom suave en la imagen al hacer hover */
+.movie-card:hover .card-img-top {
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+/* Limitar texto a 2 líneas en la sinopsis */
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Asegurar bordes redondeados arriba */
+.rounded-t-3 {
+    border-top-left-radius: calc(1rem - 1px) !important;
+    border-top-right-radius: calc(1rem - 1px) !important;
 }

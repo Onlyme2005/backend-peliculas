@@ -23,7 +23,7 @@ function App() {
         <Route path="/directores" element={<DirectorView />} />
         <Route path="/productoras" element={<ProductoraView />} />
         <Route path="/tipos" element={<TipoView />} />
-        <Route path="/media" element={<MediaView />} />
+        <Route path="/peliculas" element={<MediaView />} />
       </Routes>
     </BrowserRouter>
   );

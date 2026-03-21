@@ -210,7 +210,7 @@ export const MediaView = () => {
         <h4 className="mt-5">Catálogo Completo de Producciones</h4>
         <div className="table-responsive">
             {/* Tabla expandida con estilo más pequeño para que quepa todo */}
-            <table className="table table-striped table-bordered text-center align-middle" style={{ fontSize: '0.9rem' }}>
+            <table className="table table-striped table-hover table-bordered text-center align-middle shadow-sm" style={{ fontSize: '0.9rem' }}>
             <thead className="table-dark">
                 <tr>
                 <th>Portada</th>

@@ -31,19 +31,24 @@ export const GeneroView = () => {
         const datosGenero = { nombre, descripcion, estado };
         
         if (idEdicion) {
-            // Si hay ID, actualizamos
             await updateGenero(idEdicion, datosGenero);
-            alert('¡Género actualizado con éxito!');
+            // Alerta de éxito animada para actualización
+            Swal.fire('¡Actualizado!', 'El género se actualizó con éxito.', 'success');
         } else {
-            // Si no hay ID, creamos
             await createGenero(datosGenero);
-            alert('¡Género creado con éxito!');
+            // Alerta de éxito animada para creación
+            Swal.fire('¡Creado!', 'El género se creó con éxito.', 'success');
         }
         
         limpiarFormulario();
         cargarGeneros();
         } catch (error) {
-        alert(error.response?.data?.msg || 'Hubo un error al procesar el género');
+        // Alerta de error animada
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.response?.data?.msg || 'Hubo un error al procesar el género',
+        });
         }
     };
 
@@ -135,7 +140,7 @@ const handleEliminar = async (id) => {
         <h4 className="mt-5">Catálogo de Géneros</h4>
         <div className="table-responsive">
             {/* Aplicamos align-middle, text-center y un tamaño de letra más pequeño (0.9rem) para compactar */}
-            <table className="table table-striped table-bordered text-center align-middle shadow-sm table-hover" style={{ fontSize: '0.9rem' }}>
+            <table className="table table-striped table-hover table-bordered text-center align-middle shadow-sm" style={{ fontSize: '0.9rem' }}>
             <thead className="table-dark">
                 <tr>
                 {/* Asignamos anchos aproximados para controlar la estructura */}

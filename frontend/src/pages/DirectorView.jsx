@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getDirectores, createDirector, updateDirector, deleteDirector } from '../services/directorService';
+import Swal from 'sweetalert2';
 
 export const DirectorView = () => {
   const [directores, setDirectores] = useState([]);
@@ -29,19 +30,25 @@ export const DirectorView = () => {
         
         if (idEdicion) {
             await updateDirector(idEdicion, datosDirector);
-            alert('¡Director actualizado con éxito!');
+            // Alerta de éxito animada para actualización
+            Swal.fire('¡Actualizado!', 'El director se actualizó con éxito.', 'success');
         } else {
             await createDirector(datosDirector);
-            alert('¡Director creado con éxito!');
+            // Alerta de éxito animada para creación
+            Swal.fire('¡Creado!', 'El director se creó con éxito.', 'success');
         }
         
         limpiarFormulario();
         cargarDirectores();
         } catch (error) {
-        alert(error.response?.data?.msg || 'Hubo un error al procesar el director');
+        // Alerta de error animada
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.response?.data?.msg || 'Hubo un error al procesar el director',
+        });
         }
     };
-
     const handleEditar = (director) => {
         setIdEdicion(director._id);
         setNombres(director.nombres);
@@ -50,14 +57,36 @@ export const DirectorView = () => {
     };
 
     const handleEliminar = async (id) => {
-        const confirmacion = window.confirm('¿Estás seguro de eliminar este director?');
-        if (confirmacion) {
+        // 1. Lanzamos el cuadro de confirmación
+        const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545', // Color rojo (danger)
+        cancelButtonColor: '#6c757d', // Color gris (secondary)
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+        });
+
+        // 2. Verificamos si el usuario hizo clic en "Sí, eliminar"
+        if (result.isConfirmed) {
         try {
             await deleteDirector(id);
-            alert('Director eliminado con éxito');
+            // 3. Mostramos mensaje de éxito
+            Swal.fire(
+            '¡Eliminado!',
+            'El director ha sido borrado correctamente.',
+            'success'
+            );
             cargarDirectores();
         } catch (error) {
-            alert(error.response?.data?.msg || 'Error al eliminar');
+            // 4. Si algo falla en el backend
+            Swal.fire(
+            'Error',
+            error.response?.data?.msg || 'Error al eliminar el registro',
+            'error'
+            );
         }
         }
     };
@@ -110,7 +139,7 @@ export const DirectorView = () => {
 
         <h4 className="mt-5">Catálogo de Directores</h4>
         <div className="table-responsive">
-            <table className="table table-striped table-bordered text-center align-middle shadow-sm" style={{ fontSize: '0.9rem' }}>
+            <table className="table table-striped table-hover table-bordered text-center align-middle shadow-sm" style={{ fontSize: '0.9rem' }}>
             <thead className="table-dark">
                 <tr>
                 <th style={{ width: '40%' }}>Nombre del Director</th>

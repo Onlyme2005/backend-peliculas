@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api/genero';
+const API_URL = 'https://backend-peliculas-1.onrender.com/api/generos';
 
 export const getGeneros = async () => {
     try {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://backend-peliculas-1.onrender.com/api/productor';
+const API_URL = 'https://backend-peliculas-1.onrender.com/api/productora';
 
 export const getProductoras = async () => {
     try {

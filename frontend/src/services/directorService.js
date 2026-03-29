@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://backend-peliculas-1.onrender.com/api/directores';
+const API_URL = 'https://backend-peliculas-1.onrender.com/api/director';
 
 
 export const getDirectores = async () => {
